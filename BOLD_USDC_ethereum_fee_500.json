@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "token0": "BOLD",
+    "token1": "USDC",
+    "token0_address": "0x6440f144b7e50D6a8439336510312d2F54beB01D",
+    "token1_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "contract_address": "0xbd216513d74c8cf14cf4747e6aaa6420ff64ee9e",
+    "network": "ethereum",
+    "fee_tier": 500,
+    "total_tvl": 466428.1964975766,
+    "num_holders": 1,
+    "num_positions": 2,
+    "total_token0": 3289.547784642041,
+    "total_token1": 463138.6487129345,
+    "total_liquidity": "155686244260328744158",
+    "active_tick": -276321,
+    "total_liquidity_usd": "468553.240972652897447887402383167",
+    "data_source": "live",
+    "pool_id": "0x5d0ed52610c76d7bf729130ce7ddc0488b2f4bd0a0db1f12adbe6a32deaff893",
+    "sqrt_price_x96": "79242439015346937130528",
+    "liquidity": "155686244260328744158",
+    "tick_spacing": 10
+  },
+  "apr_data": {
+    "apr": 0.4140406741606606,
+    "boosted_apr": 0,
+    "total_apr": 0
+  },
+  "liquidity_distribution": [
+    {
+      "tick": -276380,
+      "liquidity": 1.5568624426032873e+20
+    },
+    {
+      "tick": -276320,
+      "liquidity": 0.0
+    }
+  ],
+  "positions": [
+    {
+      "tokenId": 29438,
+      "owner": "0xe5EBcDE141e98c23c150bc350B72C23fDCb747c1",
+      "tickLower": -276380,
+      "tickUpper": -276320,
+      "liquidity": 155686244260328744158,
+      "amount0": 3289.547784642041,
+      "amount1": 463138.6487129345,
+      "relative_liquidity": 1.0
+    },
+    {
+      "tokenId": 28638,
+      "owner": "0xe5EBcDE141e98c23c150bc350B72C23fDCb747c1",
+      "tickLower": -276410,
+      "tickUpper": -276130,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    }
+  ],
+  "pool_metrics": {
+    "poolId": "0x5d0ed52610c76d7bf729130ce7ddc0488b2f4bd0a0db1f12adbe6a32deaff893",
+    "token0": "0x6440f144b7e50D6a8439336510312d2F54beB01D",
+    "token1": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "fee": 500,
+    "tickSpacing": 10,
+    "sqrtPriceX96": "79242439015346937130528",
+    "active_tick": -276321,
+    "liquidity": "155686244260328744158",
+    "totalLiquidityUsd": "468553.240972652897447887402383167",
+    "apr": 0.4140406741606606,
+    "boostedApr": 0,
+    "totalApr": 0
+  }
+}

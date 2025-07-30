@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "token0": "syrupUSD",
+    "token1": "USDC",
+    "token0_address": "0x80ac24aA929eaF5013f6436cdA2a7ba190f5Cc0b",
+    "token1_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "contract_address": "0xbd216513d74c8cf14cf4747e6aaa6420ff64ee9e",
+    "network": "ethereum",
+    "fee_tier": 800,
+    "total_tvl": 0.0,
+    "num_holders": 1,
+    "num_positions": 4,
+    "total_token0": 0.0,
+    "total_token1": 0.0,
+    "total_liquidity": "0",
+    "active_tick": 1079,
+    "total_liquidity_usd": "14925084.42390089389670975588417992",
+    "data_source": "live",
+    "pool_id": "0xcdb422a853a4fa2deb364317db92ad76d1cb7a8e1b82a32219bcb41720a90228",
+    "sqrt_price_x96": "83623643052971284380649655770",
+    "liquidity": "7057780421898880",
+    "tick_spacing": 5
+  },
+  "apr_data": {
+    "apr": 9.028967609160524,
+    "boosted_apr": 0,
+    "total_apr": 0
+  },
+  "liquidity_distribution": [
+    {
+      "tick": 1045,
+      "liquidity": 0.0
+    },
+    {
+      "tick": 1085,
+      "liquidity": 0.0
+    }
+  ],
+  "positions": [
+    {
+      "tokenId": 20534,
+      "owner": "0x2570fAF7C8A0da87d3F123B35cC722EC3fCC3e08",
+      "tickLower": 912,
+      "tickUpper": 1008,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0
+    },
+    {
+      "tokenId": 20565,
+      "owner": "0x2570fAF7C8A0da87d3F123B35cC722EC3fCC3e08",
+      "tickLower": 960,
+      "tickUpper": 1040,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0
+    },
+    {
+      "tokenId": 22552,
+      "owner": "0x2570fAF7C8A0da87d3F123B35cC722EC3fCC3e08",
+      "tickLower": 960,
+      "tickUpper": 1072,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0
+    },
+    {
+      "tokenId": 26233,
+      "owner": "0x2570fAF7C8A0da87d3F123B35cC722EC3fCC3e08",
+      "tickLower": 1008,
+      "tickUpper": 1088,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0
+    }
+  ],
+  "pool_metrics": {
+    "poolId": "0xcdb422a853a4fa2deb364317db92ad76d1cb7a8e1b82a32219bcb41720a90228",
+    "token0": "0x80ac24aA929eaF5013f6436cdA2a7ba190f5Cc0b",
+    "token1": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "fee": 800,
+    "tickSpacing": 5,
+    "sqrtPriceX96": "83623643052971284380649655770",
+    "active_tick": 1079,
+    "liquidity": "7057780421898880",
+    "totalLiquidityUsd": "14925084.42390089389670975588417992",
+    "apr": 9.028967609160524,
+    "boostedApr": 0,
+    "totalApr": 0
+  }
+}

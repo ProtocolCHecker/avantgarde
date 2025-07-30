@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "token0": "USD0",
+    "token1": "USDC",
+    "token0_address": "0x73A15FeD60Bf67631dC6cd7Bc5B6e8da8190aCF5",
+    "token1_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "contract_address": "0xbd216513d74c8cf14cf4747e6aaa6420ff64ee9e",
+    "network": "ethereum",
+    "fee_tier": 100,
+    "total_tvl": 74109.25473834571,
+    "num_holders": 10,
+    "num_positions": 12,
+    "total_token0": 16135.690192847387,
+    "total_token1": 57973.56454549833,
+    "total_liquidity": "1478479127217843909581",
+    "active_tick": -276346,
+    "total_liquidity_usd": "74299.47873911349736014328613662375",
+    "data_source": "live",
+    "pool_id": "0x1ccaaf8f0ff6f39905cf517dcecd97245456fca8ea09a71886b14780a9de4d16",
+    "sqrt_price_x96": "79144262689093910387341",
+    "liquidity": "1478479127217843909581",
+    "tick_spacing": 1
+  },
+  "apr_data": {
+    "apr": 7.2638931883336255,
+    "boosted_apr": 0,
+    "total_apr": 0
+  },
+  "liquidity_distribution": [
+    {
+      "tick": -887272,
+      "liquidity": 2997135415257.0
+    },
+    {
+      "tick": -276349,
+      "liquidity": 1.5241726673322885e+18
+    },
+    {
+      "tick": -276346,
+      "liquidity": 1.478479127217844e+21
+    },
+    {
+      "tick": -276345,
+      "liquidity": 2997135415257.0
+    },
+    {
+      "tick": 887272,
+      "liquidity": 0
+    }
+  ],
+  "positions": [
+    {
+      "tokenId": 39420,
+      "owner": "0x059516458C36270DBD31b68AEb40942c0521080d",
+      "tickLower": -276346,
+      "tickUpper": -276345,
+      "liquidity": 1476848062098108823900,
+      "amount0": 16114.89225359995,
+      "amount1": 57678.52333548457,
+      "relative_liquidity": 0.998896795301531
+    },
+    {
+      "tokenId": 9662,
+      "owner": "0x6577Fd2A1782FdB0EA1B4eeFd72f42AcdeA0a9a3",
+      "tickLower": -276349,
+      "tickUpper": -276345,
+      "liquidity": 1524169670196873199,
+      "amount0": 16.63125045953164,
+      "amount1": 287.8725476427898,
+      "relative_liquidity": 0.0010309037457059056
+    },
+    {
+      "tokenId": 30721,
+      "owner": "0x9e0C163c5D07AE90c8F805165864D583bbAE6b17",
+      "tickLower": -276346,
+      "tickUpper": -276345,
+      "liquidity": 106892452402797225,
+      "amount0": 1.1663761475550534,
+      "amount1": 4.1747008162389685,
+      "relative_liquidity": 7.229892558844853e-05
+    },
+    {
+      "tokenId": 27021,
+      "owner": "0x3b0ED655e4e94496A335633F68E0EE21c1474aE4",
+      "tickLower": -887272,
+      "tickUpper": 887272,
+      "liquidity": 2997135415257,
+      "amount0": 3.000312640349613,
+      "amount1": 2.993961554733354,
+      "relative_liquidity": 2.027174655415607e-09
+    },
+    {
+      "tokenId": 5918,
+      "owner": "0x08d92207A07E0789CfCf19413123C3eB919d3480",
+      "tickLower": -276349,
+      "tickUpper": -276344,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    },
+    {
+      "tokenId": 9039,
+      "owner": "0xe1009B65e306625713cE113b9b10ca7096b8e555",
+      "tickLower": -276447,
+      "tickUpper": -276200,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    },
+    {
+      "tokenId": 9671,
+      "owner": "0xfc82a83775b8E27bA90711f1dB3D29F5a61C146B",
+      "tickLower": -887272,
+      "tickUpper": 887272,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    },
+    {
+      "tokenId": 12850,
+      "owner": "0x4AD6f9B4C887938EC02Fdb21DfC28e6eDcEEA049",
+      "tickLower": -887272,
+      "tickUpper": 887272,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    },
+    {
+      "tokenId": 19421,
+      "owner": "0xCF1E650717edf4d5705110B6b2163ebee8147d3b",
+      "tickLower": -887272,
+      "tickUpper": 887272,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    },
+    {
+      "tokenId": 29377,
+      "owner": "0x1f2F10D1C40777AE1Da742455c65828FF36Df387",
+      "tickLower": -263417,
+      "tickUpper": -263416,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    },
+    {
+      "tokenId": 40892,
+      "owner": "0x1f2F10D1C40777AE1Da742455c65828FF36Df387",
+      "tickLower": -276344,
+      "tickUpper": -276343,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    },
+    {
+      "tokenId": 41523,
+      "owner": "0x1f2F10D1C40777AE1Da742455c65828FF36Df387",
+      "tickLower": -276297,
+      "tickUpper": -276296,
+      "liquidity": 0,
+      "amount0": 0.0,
+      "amount1": 0.0,
+      "relative_liquidity": 0.0
+    }
+  ],
+  "pool_metrics": {
+    "poolId": "0x1ccaaf8f0ff6f39905cf517dcecd97245456fca8ea09a71886b14780a9de4d16",
+    "token0": "0x73A15FeD60Bf67631dC6cd7Bc5B6e8da8190aCF5",
+    "token1": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "fee": 100,
+    "tickSpacing": 1,
+    "sqrtPriceX96": "79144262689093910387341",
+    "active_tick": -276346,
+    "liquidity": "1478479127217843909581",
+    "totalLiquidityUsd": "74299.47873911349736014328613662375",
+    "apr": 7.2638931883336255,
+    "boostedApr": 0,
+    "totalApr": 0
+  }
+}
