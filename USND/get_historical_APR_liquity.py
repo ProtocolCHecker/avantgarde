@@ -736,7 +736,7 @@ def create_markets_comparison_tab(visible_markets: Dict[str, pd.DataFrame], anal
     for market_symbol, df in visible_markets.items():
         if not df.empty:
             config = analytics.MARKETS[market_symbol]
-            current_apr = df.iloc[0]['stability_pool_apr_percent'] if len(df) > 0 else 0
+            current_apr = df.iloc[-1]['stability_pool_apr_percent'] if len(df) > 0 else 0
             avg_apr = df['stability_pool_apr_percent'].mean()
             max_apr = df['stability_pool_apr_percent'].max()
             min_apr = df['stability_pool_apr_percent'].min()
