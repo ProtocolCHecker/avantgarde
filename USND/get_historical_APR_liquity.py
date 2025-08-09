@@ -1267,7 +1267,7 @@ def create_current_apr_tab(visible_markets: Dict[str, pd.DataFrame], analytics: 
     for market_symbol, df in visible_markets.items():
         if not df.empty:
             config = analytics.MARKETS[market_symbol]
-            current_record = df.iloc[0]
+            current_record = df.iloc[-1]
             
             current_data.append({
                 'Market': config['display_name'],
