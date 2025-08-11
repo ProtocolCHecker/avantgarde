@@ -17,6 +17,18 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+def create_download_button(df, filename, button_text, key=None):
+    """Create a download button for DataFrame as CSV"""
+    if not df.empty:
+        csv = df.to_csv(index=False)
+        st.download_button(
+            label=button_text,
+            data=csv,
+            file_name=filename,
+            mime='text/csv',
+            key=key
+        )
+
 class NeriteSuperAPRAnalytics:
     def __init__(self, dune_api_key: str):
         self.dune_api_key = dune_api_key
@@ -158,144 +170,6 @@ class NeriteSuperAPRAnalytics:
             st.error(f"Error executing {query_name} for {market_symbol}: {e}")
             return pd.DataFrame()
     
-    # def get_stability_pool_apr_history(self, market_symbol: str) -> pd.DataFrame:
-    #     """Get historical APR for a specific market's stability pool"""
-        
-    #     # Get table names using the same logic as your original script
-    #     sp_table = self.get_table_name(market_symbol, 'stabilitypool_balance')
-    #     trove_table = self.get_table_name(market_symbol, 'trovemanager')
-        
-    #     query = f"""
-    #     WITH date_series AS (
-    #         SELECT sequence(
-    #             DATE('2024-07-12'),
-    #             CURRENT_DATE,
-    #             INTERVAL '1' DAY
-    #         ) as date_array
-    #     ),
-    #     dates AS (
-    #         SELECT date_val as date
-    #         FROM date_series
-    #         CROSS JOIN UNNEST(date_array) AS t(date_val)
-    #     ),
-    #     -- Get stability pool balance for each day
-    #     daily_stability_pool AS (
-    #         SELECT
-    #             DATE(evt_block_time) as date,
-    #             MAX(_newBalance / 1e18) as max_sp_balance_bold
-    #         FROM {sp_table}
-    #         WHERE evt_block_time >= DATE('2024-07-12')
-    #         GROUP BY DATE(evt_block_time)
-    #     ),
-    #     -- Forward-fill stability pool data for ALL days
-    #     filled_sp_data AS (
-    #         SELECT
-    #             d.date,
-    #             COALESCE(
-    #                 dsp.max_sp_balance_bold,
-    #                 LAG(dsp.max_sp_balance_bold) IGNORE NULLS OVER (ORDER BY d.date),
-    #                 0
-    #             ) as stability_pool_bold
-    #         FROM dates d
-    #         LEFT JOIN daily_stability_pool dsp ON d.date = dsp.date
-    #     ),
-    #     -- Get all troves that have ever existed
-    #     all_troves AS (
-    #         SELECT DISTINCT _troveId
-    #         FROM {trove_table}
-    #         WHERE _debt > 0
-    #         AND evt_block_time >= DATE('2024-07-12')
-    #     ),
-    #     -- Get the latest state of each trove for each day (only when there are actual events)
-    #     daily_trove_events AS (
-    #         SELECT
-    #             DATE(evt_block_time) as date,
-    #             _troveId,
-    #             _debt / 1e18 as debt,
-    #             _annualInterestRate / 1e16 as interest_rate_percent,
-    #             evt_block_time,
-    #             ROW_NUMBER() OVER (
-    #                 PARTITION BY DATE(evt_block_time), _troveId 
-    #                 ORDER BY evt_block_time DESC
-    #             ) as rn
-    #         FROM {trove_table}
-    #         WHERE _debt > 0
-    #         AND evt_block_time >= DATE('2024-07-12')
-    #     ),
-    #     -- Get only the latest update per trove per day (when events occurred)
-    #     latest_daily_events AS (
-    #         SELECT
-    #             date,
-    #             _troveId,
-    #             debt,
-    #             interest_rate_percent
-    #         FROM daily_trove_events
-    #         WHERE rn = 1
-    #     ),
-    #     -- Create ALL date x trove combinations (every day for every trove)
-    #     all_date_trove_combinations AS (
-    #         SELECT
-    #             d.date,
-    #             t._troveId
-    #         FROM dates d
-    #         CROSS JOIN all_troves t
-    #         WHERE d.date >= DATE('2024-07-12')
-    #     ),
-    #     -- Join with actual events and forward-fill missing values
-    #     forward_filled_troves AS (
-    #         SELECT
-    #             adt.date,
-    #             adt._troveId,
-    #             COALESCE(
-    #                 lde.debt,
-    #                 LAG(lde.debt) IGNORE NULLS OVER (PARTITION BY adt._troveId ORDER BY adt.date),
-    #                 0
-    #             ) as debt,
-    #             COALESCE(
-    #                 lde.interest_rate_percent,
-    #                 LAG(lde.interest_rate_percent) IGNORE NULLS OVER (PARTITION BY adt._troveId ORDER BY adt.date),
-    #                 0
-    #             ) as interest_rate_percent
-    #         FROM all_date_trove_combinations adt
-    #         LEFT JOIN latest_daily_events lde ON adt.date = lde.date AND adt._troveId = lde._troveId
-    #     ),
-    #     -- Calculate daily total interest costs for ALL days
-    #     daily_interest_totals AS (
-    #         SELECT
-    #             date,
-    #             SUM(debt * (interest_rate_percent / 100)) as total_annual_interest_cost
-    #         FROM forward_filled_troves
-    #         WHERE debt > 0
-    #         GROUP BY date
-    #     ),
-    #     -- Combine stability pool and interest data for ALL days
-    #     complete_apr_calculation AS (
-    #         SELECT
-    #             d.date,
-    #             sp.stability_pool_bold,
-    #             COALESCE(dit.total_annual_interest_cost, 0) as total_annual_interest_cost,
-    #             -- Calculate APR: (Total interest * 75% to SP) / SP Balance * 100
-    #             CASE 
-    #                 WHEN sp.stability_pool_bold > 0 AND COALESCE(dit.total_annual_interest_cost, 0) > 0
-    #                 THEN (COALESCE(dit.total_annual_interest_cost, 0) * 0.75) / sp.stability_pool_bold * 100
-    #                 ELSE 0
-    #             END as stability_pool_apr_percent
-    #         FROM dates d
-    #         LEFT JOIN filled_sp_data sp ON d.date = sp.date
-    #         LEFT JOIN daily_interest_totals dit ON d.date = dit.date
-    #         WHERE d.date >= DATE('2024-07-12')
-    #         AND sp.stability_pool_bold > 0
-    #     )
-    #     SELECT
-    #         date,
-    #         ROUND(stability_pool_bold, 2) as stability_pool_bold,
-    #         ROUND(total_annual_interest_cost, 2) as total_annual_interest_cost,
-    #         ROUND(stability_pool_apr_percent, 2) as stability_pool_apr_percent
-    #     FROM complete_apr_calculation
-    #     ORDER BY date DESC
-    #     """
-        
-    #     return self.execute_dune_query(query, "Historical APR", market_symbol)
 
     def get_stability_pool_apr_history(self, market_symbol: str) -> pd.DataFrame:
         """Get historical APR for a specific market's stability pool using real rewards data"""
@@ -818,6 +692,23 @@ def create_markets_comparison_tab(visible_markets: Dict[str, pd.DataFrame], anal
     )
     
     st.plotly_chart(fig, use_container_width=True)
+
+    # Add download button for comparison data
+    if visible_markets:
+        # Combine all market data for download
+        combined_df = pd.DataFrame()
+        for market_symbol, df in visible_markets.items():
+            if not df.empty:
+                df_copy = df.copy()
+                df_copy['market'] = analytics.MARKETS[market_symbol]['display_name']
+                combined_df = pd.concat([combined_df, df_copy], ignore_index=True)
+        
+        create_download_button(
+            combined_df, 
+            "nerite_protocol_markets_comparison.csv", 
+            "📥 Download Markets Comparison Data",
+            key="markets_comparison"
+        )
     
     # Summary statistics
     st.subheader("📊 APR Statistics Summary")
@@ -901,6 +792,14 @@ def create_apr_indices_tab(visible_markets: Dict[str, pd.DataFrame], analytics: 
         )
         
         st.plotly_chart(fig_indices, use_container_width=True)
+
+        # Add download button for indices data
+        create_download_button(
+            indices_df, 
+            "nerite_protocol_apr_indices.csv", 
+            "📥 Download APR Indices Data",
+            key="apr_indices"
+        )
         
         # Index metrics
         col1, col2, col3, col4 = st.columns(4)
@@ -1089,6 +988,14 @@ def create_strategy_simulator_tab(visible_markets: Dict[str, pd.DataFrame], anal
         )
         
         st.plotly_chart(fig_strategy, use_container_width=True)
+
+        # Add download button for strategy data
+        create_download_button(
+            strategy_df, 
+            f"nerite_protocol_strategy_simulation_{tbtc_collateral}tBTC_{ltv_percent}LTV.csv", 
+            "📥 Download Strategy Simulation Data",
+            key="strategy_simulation"
+        )
         
         # Strategy performance metrics with APR impact analysis
         col1, col2, col3, col4 = st.columns(4)
@@ -1339,6 +1246,14 @@ def create_individual_analysis_tab(visible_markets: Dict[str, pd.DataFrame], ana
                 fig.update_xaxes(title_text="Date", row=2, col=1)
                 
                 st.plotly_chart(fig, use_container_width=True)
+
+                # Add download button for individual market data
+                create_download_button(
+                    df, 
+                    f"nerite_protocol_{selected_market}_detailed_analysis.csv", 
+                    f"📥 Download {config['display_name']} Data",
+                    key=f"individual_{selected_market}"
+                )
                 
                 # Data table
                 st.subheader("📋 Historical Data Table")
@@ -1387,6 +1302,14 @@ def create_current_apr_tab(visible_markets: Dict[str, pd.DataFrame], analytics: 
         
         fig.update_layout(template="plotly_white")
         st.plotly_chart(fig, use_container_width=True)
+
+        # Add download button for current APR data
+        create_download_button(
+            current_df, 
+            "nerite_protocol_current_apr_snapshot.csv", 
+            "📥 Download Current APR Data",
+            key="current_apr"
+        )
         
         # Detailed current metrics
         st.subheader("📊 Detailed Current Metrics")
